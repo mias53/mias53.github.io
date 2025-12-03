@@ -1,41 +1,39 @@
 # Site settings
-title:          Tale
-description:    "Minimal Jekyll theme for storytellers"
-baseurl:        "/tale"
-url:            "https://chesterhow.github.io"
-
-# Google Analytics
-google_analytics: UA—XXXXXXXX-X
-
-# Author
+title: Monochrome | A minimal, responsive Jekyll blog theme
+description: "A minimal, responsive, ready to use blog template, built with Jekyll."
+url: "http://www.dyutibarma.github.io/monochrome"
 author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+  name: "The Review Index"
+  email: "dyutibarma@gmail.com"
+  url: "https://thereviewindex.com"
 
 # Build settings
-markdown:       kramdown
-include:
-  - _pages
+baseurl: /monochrome # Change this to your relative path (ex: /blog/), or leave just a /
+markdown: kramdown
+source: .
+destination: ./_site
+permalink: /:title
+paginate: 8
+paginate_path: /page:num/
 
-# Assets
-sass:
-  sass_dir:     _sass
-  style:        compressed
+# Default values
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
 
-# Gems
-plugins:
-  - jekyll-feed
+# Plugins
+gems:
   - jekyll-paginate
-  - jekyll-seo-tag
-  # - jemoji #Uncomment this to allow emoji in your post
+  - jekyll-sitemap
 
-# Permalinks
-permalink:      /:year-:month-:day/:title
-paginate:       5
+# Custom variables
+version: "1.0.0"
 
-# Excludes
-exclude: [ Gemfile, Gemfile.lock, tale.gemspec ]
-
-# Disqus (Set to your disqus id)
-disqus:         jekyll-tale
+# Options
+custom_header: false
+custom_nav_footer: false
+reverse: false
