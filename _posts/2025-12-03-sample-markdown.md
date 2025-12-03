@@ -6,7 +6,6 @@ gh-badge: [star, fork, follow]
 tags: [subjects]
 comments: true
 mathjax: true
-author: 
 ---
 
 <h3>현재 수강중인 과목</h3>소프트웨어(코딩), 게임개발입문(Godot), 컴퓨터활용입문, 웹활용및실습, 웹세계에대한기반체계
