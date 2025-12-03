@@ -1,39 +1,35 @@
-<footer class="footer">
-  <div class="footer-column">
-    <p>
-      <small>
-        &copy;&nbsp;
-        {%- assign date_from = site.posts[-1].date | date_to_xmlschema -%}
-        {%- assign year_from = date_from | date: '%Y' -%}
-        {%- assign date_to   = site.time | date_to_xmlschema -%}
-        {%- assign year_to   = date_to | date: '%Y' -%}
-        {%- unless year_from == nil or year_from == year_to -%}
-          <time datetime="{{ date_from }}">{{ year_from }}</time>-
-        {%- endunless -%}
-        <time datetime="{{ date_to }}">{{ year_to }}</time>
-        {%- if site.author -%}
-          &nbsp;<a href="{{ site.author.url }}" target="_blank">{{ site.author.name }}</a>
-        {%- endif -%}
-        . All right reserved.
-      </small>
-    </p>
-    <p>
-      <small>
-        Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> & <a href="https://github.com/zivhub/monophase" target="_blank">Monophase</a>
-      </small>
-    </p>
-  </div>
-  {% if site.data.social %}
-    <div class="footer-column">
-      <ul class="social-icons">
-        {% for social in site.data.social %}
-          <li class="social-icon-item">
-            <a class="social-icon" href="{{ social.url }}" target="_blank">
-              <i class="{{ social.icon | default: 'fas fa-link' }}" title="{{ social.title }}"></i>
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-</footer>
+{%- if site.texture.analytics_id -%}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.texture.analytics_id }}"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+
+	gtag('config', '{{ site.texture.analytics_id }}');
+</script>
+{%- endif -%}
+
+{%- if site.texture.showPicker -%}
+<div id="texture-picker">
+	<div style="display:flex;justify-content: space-between">
+		<p>Select Texture</p>
+		<p><a id="hidePicker" href="#">Hide</a></p>
+	</div>
+	<div class="texture-colors">
+		<div id="black"></div>
+		<div id="blue"></div>	
+		<div id="red"></div>	
+		<div id="purple"></div>		
+		<div id="green"></div>
+	</div>
+	<p class="info">You can use the <b>showPicker</b> property in _config.yml to hide this picker permanently.</p>
+	<p class="info">You can use the <b>texture</b> property in _config.yml to apply a texture permanently.</p>
+</div>
+<script src="{{ "/assets/js/picker.js" | relative_url }}"></script>
+{%- endif -%}
+
+{%- if site.texture.useMathJax -%}
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+{%- endif -%}
