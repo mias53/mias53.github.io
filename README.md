@@ -1,150 +1,132 @@
-# texture
+# Tale
 
-A configurable jekyll theme for simply beautiful blogs.
+[![Gem Version](https://badge.fury.io/rb/tale.svg)](https://badge.fury.io/rb/tale)
 
-**Demo**: [samarsault.com/texture](https://samarsault.com/texture)
+Tale is a minimal Jekyll theme curated for storytellers. Checkout the demo [here](https://chesterhow.github.io/tale/).
 
-![texture theme preview](/screen1.png)
+![Tale screenshot](http://i.imgur.com/pXZrtmo.png)
 
+## Features
+- Easy installation
+- Compatible with GitHub Pages
+- Responsive design (looks just as good on mobile)
+- Syntax highlighting, with the help of Pygments
+- Markdown and HTML text formatting
+- Pagination of posts
+- Sticky posts
+- Tags
+- Excerpt management
+- [Disqus comments (can be enabled if needed)](#enabling-comments)
 
-## Installation on Github Pages
-
-Add this line to your site's `_config.yml`:
-```yaml
-remote_theme: samarsault/texture
-```
-
-**NOTE: If you are forking this repo, remove `base_url: /texture` in the `_config.yml` which is required to load the required website assets**
 ## Installation
+There are 3 ways to install this theme
 
-Add this line to your Jekyll site's `Gemfile`:
+1. Install it as a Ruby Gem (for self-hosted sites)
+2. Install it with the `jekyll-remote-theme` plugin (for GitHub Pages hosted sites)
+3. Fork the project directly
+
+### Ruby Gem method
+1. Add this line to your `Gemfile`:
 
 ```ruby
-gem "texture"
+gem "tale"
 ```
 
-And add this line to your Jekyll site's `_config.yml`:
+2. Install the theme's gems and dependencies:
+
+```bash
+$ bundle
+```
+
+3. In `_config.yml` add these lines:
 
 ```yaml
-theme: texture
+theme:      tale
+
+permalink:  /:year-:month-:day/:title
+paginate:   5
 ```
 
-And then execute:
+Remove any other `theme:` lines.
 
-    $ bundle
+4. Rename `index.md` to `index.html`. Without this, the `jekyll-paginate` gem will not work.
 
-Or install it yourself as:
+5. In `about.md`, change the `layout:` field to `post`:
 
-    $ gem install texture
+```Markdown
+layout: post
+```
+
+### GitHub Pages method
+1. Add these 2 lines in to your `Gemfile`:
+
+```ruby
+gem "jekyll-remote-theme"
+gem "jekyll-paginate"
+```
+
+2. Install the newly added gems:
+
+```bash
+$ bundle
+```
+
+3. In `_config.yml` add these lines:
+
+```yaml
+remote_theme: chesterhow/tale
+
+permalink:    /:year-:month-:day/:title
+paginate:     5
+
+plugins:
+  - jekyll-paginate
+  - jekyll-remote-theme
+```
+
+Remove any other `theme:` or `remote_theme:` lines.
+
+4. Rename `index.md` to `index.html`. Without this, the `jekyll-paginate` gem will not work.
+
+5. In `about.md`, change the `layout:` field to `post`:
+
+```Markdown
+layout: post
+```
+
+### Fork method
+1. Fork this repository
+
+2. Delete the unnecessary files/folders: `CODE_OF_CONDUCT.md`, `LICENSE`, `README.md`, `tale.gemspec`
+
+3. Delete the `baseurl` line in `_config.yml`:
+
+```yaml
+baseurl:  "/tale"   # delete this line
+```
 
 ## Usage
+Once you've installed the theme, you're ready to work on your Jekyll site. To start off, I would recommend updating `_config.yml` with your site's details.
 
-The "texture" key in _config.yml is used to customize the theme data.
-```yaml
-texture:
-  title: Adam Denisov
-  tagline: Developer. Designer
-  date_format: "%b %-d, %Y"
+To build and serve your site, run:
 
-  social_links:
-    twitter: thelehhman
-    github:  thelehhman
-    linkedIn: in/thelehhman # format: locale/username
+```bash
+$ bundle exec jekyll serve
 ```
 
-**Styling**
+And you're all set! Head over to http://127.0.0.1:4000/ to see your site in action.
 
-Multiple header styles are supported using the "style" property under texture in `_config.yml`.
+### Enabling Comments
+Comments are disabled by default. To enable them, look for the following line in `_config.yml` and change `jekyll-tale` to your site's Disqus id.
 
-```yaml
-texture:
-  style: [yellow|red|black|blue|green|purple]
+```yml
+disqus: jekyll-tale
 ```
 
-For example, the blue style looks like this:
-
-![texture theme blue](/screen2.png)
-
-
-**Texture Picker**
-
-You can toggle the texture picker to show/experiment various textures on your site using the showPicker variable. Remember to make it `false` for production.
-
-```yaml
-texture:
-  showPicker: [false|true] # show the texture selector(development purposes)
-```
-
-**Comments (Disqus)**
-
-Comments on posts can be enabled by specifying your disqus_shortname under texture in `_config.yml`. For example,
-```yaml
-texture:
-  disqus_shortname: games
-```
-
-**Google Analytics**
-
-It can be enabled by specifying your analytics id under texture in `_config.yml`
-```yaml
-texture:
-  analytics_id: '< YOUR ID >'
-```
-
-**Excerpts**
-
-Excerpts can be enabled by adding the following line to your `_config.yml`
-```yaml
-show_excerpts: true
-```
-
-**Toggle Navbar**
-
-```yaml
-texture:
-  showNav: true
-```
-
-**Navigation**
-
-After setting `showNav` to true navigation can be built by adding the following to your `_config.yml`
-
-```yaml
-texture:
-  navigation:
-    - title: My Work
-      url: "/my-work"
-    - title: Resume
-      url: "/resume"
-```
-
-**Layouts**
-
-- Home
-- Page
-- Post
+Next, add `comments: true` to the YAML front matter of the posts which you would like to enable comments for.
 
 ## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/samarsault/texture. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## Development
-
-To set up your environment to develop this theme, run `bundle install`.
-
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in `texture.gemspec` accordingly.
-
-## Donation
-If this project help you reduce time to develop, you can give me a cup of coffee :) 
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/thelehhman)
+Found a bug or have a suggestion? Feel free to create an issue or make a pull request!
 
 ## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## More Themes
-[plainwhite](https://github.com/samarsault/plainwhite-jekyll)
+See [LICENSE](https://github.com/chesterhow/tale/blob/master/LICENSE)

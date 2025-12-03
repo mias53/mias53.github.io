@@ -1,24 +1,26 @@
 ---
-layout: page
+layout: default
 ---
-{%- if site.posts.size > 0 -%}
-<ul class="posts">
-	{%- for post in site.posts -%}
-	<li>
-		{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-		<div class="post-meta">
-			<a class="post-link" href="{{ post.url | relative_url }}">
-				<h2 class="post-title">{{ post.title | escape }}</h2>
-			</a>
-			<div class="post-date"><i class="icon-calendar"></i>{{ post.date | date: date_format }}</div>
-		</div>
-		<div class="post">
-			{%- if site.show_excerpts -%}
-			{{ post.excerpt }}
-			{%- endif -%}
-		</div>
-	</li>
-	{%- endfor -%}
-</ul>
-{%- endif -%}
 
+<div class="catalogue">
+  {% for post in site.posts %}
+    {% if post.sticky %}
+      {% include catalogue_item.html sticky='true' %}
+    {% endif %}
+  {% endfor %}
+
+  {% for post in paginator.posts %}
+    {% include catalogue_item.html %}
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="left arrow">&#8592;</a>
+  {% endif %}
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
+  {% endif %}
+
+  <span>{{ paginator.page }}</span>
+</div>
