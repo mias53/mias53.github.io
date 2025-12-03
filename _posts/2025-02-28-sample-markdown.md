@@ -1,12 +1,12 @@
 ---
 layout: post
-title: 대학에서 수강한 혹은, 수강중인 과목들
+title: 대학에서 수강한 과목과 수강중인 과목들
 gh-repo: daattali/beautiful-jekyll
 gh-badge: [star, fork, follow]
 tags: [subjects]
 comments: true
 mathjax: true
-author:
+author: 
 ---
 
 {: .box-success}
