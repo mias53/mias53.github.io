@@ -1,10 +1,9 @@
 ---
 layout: post
 title: 대학에서 수강한 혹은, 수강중인 과목들
-subtitle: There's lots to learn!
 gh-repo: daattali/beautiful-jekyll
 gh-badge: [star, fork, follow]
-tags: [test]
+tags: [subjects]
 comments: true
 mathjax: true
 author:
